@@ -89,7 +89,7 @@ app.post('/api/generateAIReply', async (req, res) => {
         aluminium - a light metal used to make cans. calcium - a mineral used to strengthen bones.
         *aluminium*
         `,
-        temperature: 0.3,
+        temperature: 0.2,
         max_tokens: 500,
         top_p: 0.5,
         frequency_penalty: 0.0,

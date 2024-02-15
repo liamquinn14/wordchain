@@ -134,7 +134,7 @@ React.useEffect(() => {
 }, [validPlayerAnswer])
 
 React.useEffect(() => {
-  if (!submittedPlayerAnswer) {
+  if (!validPlayerAnswer) {
     return;
   }
   async function generateAIReply(aiPromptList) {
@@ -149,15 +149,17 @@ React.useEffect(() => {
       return data.json();
       }).then((data) => {
       let res = data.aiReply
-      console.log(res)
-      usedWords.indexOf(res)
-      let aiSuccess = checkAiWord(aiPromptList, res)
-      if (aiSuccess && usedWords.indexOf(res) < 0 && res.length > 4) {
+      console.log(usedWords.indexOf(res))
+      let aiSuccess = checkAiWord(aiPromptList, res, usedWords)
+      if (aiSuccess && res.length > 4) {
         setPromptWord(res);
+        setUsedWords(prevUsedWords => [...prevUsedWords, res])
       } else {
-        console.log(`${res} is an invalid word`)  
-        setPromptWord(promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase())
+        console.log(`${res} is an invalid word`)
+        let newRandomPrompt = promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase()
+        setPromptWord(newRandomPrompt)
         setUsedWords(prevUsedWords => [...prevUsedWords, "AI DEFEATED! + 25 POINTS"])
+        setUsedWords(prevUsedWords => [...prevUsedWords, newRandomPrompt])
         setPlayerScore(prevPlayerScore => prevPlayerScore + 25)
       }
       setLoadingResponse(false)
@@ -166,10 +168,9 @@ React.useEffect(() => {
       console.error('Error:', error);
     });
   }
-  setUsedWords(prevUsedWords => [...prevUsedWords, promptWord])
   generateAIReply(aiPromptList);
   setAnswer("")
-}, [submittedPlayerAnswer]);
+}, [validPlayerAnswer]);
 
   return (
     <>

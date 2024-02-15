@@ -18,7 +18,7 @@ function Game() {
     const [round, setRound] = React.useState(0)
     const [possibleWords, setPossibleWords] = React.useState([])
     const [loadingResponse, setLoadingResponse] = React.useState(false)
-    const [timeLeft, setTimeLeft] = React.useState(60)
+    const [timeLeft, setTimeLeft] = React.useState(600)
 
     const {setGameState, playerScore, setPlayerScore, defeatReason, setDefeatReason} = React.useContext(GameContext)
 
@@ -150,10 +150,12 @@ React.useEffect(() => {
       }).then((data) => {
       let res = data.aiReply
       console.log(res)
+      usedWords.indexOf(res)
       let aiSuccess = checkAiWord(aiPromptList, res)
       if (aiSuccess && usedWords.indexOf(res) < 0 && res.length > 4) {
         setPromptWord(res);
-      } else {  
+      } else {
+        console.log(`${res} is an invalid word`)  
         setPromptWord(promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase())
         setUsedWords(prevUsedWords => [...prevUsedWords, "AI DEFEATED! + 25 POINTS"])
         setPlayerScore(prevPlayerScore => prevPlayerScore + 25)

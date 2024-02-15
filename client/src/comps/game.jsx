@@ -126,7 +126,7 @@ function Game() {
 
 React.useEffect(() => {
   if (validPlayerAnswer === 'X') {
-    setDefeatReason(`${confirmedPlayerAnswer} is an invalid word`)
+    setDefeatReason(`We could not find a valid word from ${submittedPlayerAnswer}. If you meant ${confirmedPlayerAnswer}, then that is invalid.`)
     setGameState('results')
   } else {
     setPlayerScore(prevPlayerScore => prevPlayerScore + validPlayerAnswer.length)
@@ -150,6 +150,7 @@ React.useEffect(() => {
       return data.json();
       }).then((data) => {
       let res = data.aiReply
+      res !== undefined && res.trim()
       console.log(usedWords.indexOf(res))
       let aiSuccess = checkAiWord(aiPromptList, res, usedWords)
       if (aiSuccess && res.length > 4) {

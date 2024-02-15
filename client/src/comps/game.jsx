@@ -4,6 +4,7 @@ import { findPossibleWords } from '../possible-words';
 import { GameContext } from '../App'
 import { generateAIPrompt } from '../ai-prompt';
 import { checkAiWord } from '../check-ai-word';
+import { preventHallucination } from '../prevent-hallucination';
 
 function Game() {
 
@@ -100,6 +101,11 @@ function Game() {
 
   React.useEffect(() => {
     if (!confirmedPlayerAnswer) {
+      return
+    }
+    let wordIsContained = preventHallucination(promptWord, answer, confirmedPlayerAnswer)
+    if (!wordIsContained) {
+      setValidPlayerAnswer("X")
       return
     }
     async function validatePlayerAnswer(confirmedPlayerAnswer) {

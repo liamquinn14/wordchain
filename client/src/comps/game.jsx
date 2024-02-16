@@ -23,10 +23,13 @@ function Game() {
         let newWord = promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase()
         setPromptWord(newWord)
         setUsedWords([newWord])
-        if(inputRef.current) {
-            inputRef.current.focus();
-        }
     }, [])
+
+    React.useEffect(() => {
+      if(inputRef.current) {
+        inputRef.current.focus();
+    }
+    }, [round])
 
     React.useEffect(() => {
       if (loadingResponse) {

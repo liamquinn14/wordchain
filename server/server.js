@@ -119,3 +119,5 @@ app.post('/api/generateAIReply', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+
+export default app

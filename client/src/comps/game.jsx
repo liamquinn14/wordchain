@@ -130,7 +130,7 @@ function Game() {
 
 React.useEffect(() => {
   if (validPlayerAnswer === 'X') {
-    setDefeatReason(`We could not find a valid word from ${submittedPlayerAnswer}. If you meant ${confirmedPlayerAnswer}, then that is invalid.`)
+    setDefeatReason(`We could not find a valid word from "${submittedPlayerAnswer}". If you meant '${confirmedPlayerAnswer}', then that is invalid.`)
     setGameState('results')
   } else {
     setPlayerScore(prevPlayerScore => prevPlayerScore + validPlayerAnswer.length)

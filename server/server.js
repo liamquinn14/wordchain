@@ -10,11 +10,7 @@ const PORT = process.env.PORT
 const app = express();
 app.use(express.json()); 
 
-app.use(
-    cors({
-      origin: "*",
-    })
-  );
+app.use(cors({ origin: "https://wordchain-kohl.vercel.app" }));
 
 app.post('/api/testPlayerAnswer', async (req, res) => {
     const possibleWords = req.body.possibleWords;

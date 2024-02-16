@@ -19,7 +19,7 @@ function Game() {
     const [round, setRound] = React.useState(0)
     const [possibleWords, setPossibleWords] = React.useState([])
     const [loadingResponse, setLoadingResponse] = React.useState(false)
-    const [timeLeft, setTimeLeft] = React.useState(600)
+    const [timeLeft, setTimeLeft] = React.useState(60)
 
     const {setGameState, playerScore, setPlayerScore, defeatReason, setDefeatReason} = React.useContext(GameContext)
 

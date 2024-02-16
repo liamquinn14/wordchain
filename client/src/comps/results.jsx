@@ -19,7 +19,7 @@ function Results() {
     <>
       <h4 className='text-6xl tracking-wide m-8'>❌</h4>
       <h4 className='text-yellow-200 text-3xl tracking-wide m-4 w-1/2 flex flex-wrap text-center justify-center items-center'>{defeatReason}</h4>
-      <h1 className='text-slate-100 text-3xl tracking-wide m-4'>You survived {Math.floor(round / 2) - 1} rounds and scored...</h1>
+      <h1 className='text-slate-100 text-3xl tracking-wide m-4'>You survived {Math.floor(round / 2) - 1} round{(Math.floor(round / 2) - 1) === 1 ? "" : "s"} and scored...</h1>
       <h3 className='text-yellow-200 text-4xl tracking-wide mt-2 mb-4'> {playerScore} points</h3>
     <div 
         className="text-gray-100 text-6xl transition-all duration-300 select-none cursor-pointer m-8"

@@ -78,7 +78,7 @@ function Game() {
         return;
       }
       async function testPlayerAnswer(possibleWords) {
-        await fetch(`http://localhost:8080/api/testPlayerAnswer`, {
+        await fetch(`https://wordchain-server.vercel.app/api/testPlayerAnswer`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -105,7 +105,7 @@ function Game() {
       return
     }
     async function validatePlayerAnswer(confirmedPlayerAnswer) {
-      await fetch(`http://localhost:8080/api/validatePlayerAnswer`, {
+      await fetch(`https://wordchain-server.vercel.app/api/validatePlayerAnswer`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -143,7 +143,7 @@ React.useEffect(() => {
     return;
   }
   async function generateAIReply(aiPromptList) {
-    await fetch("http://localhost:8080/api/generateAIReply", {
+    await fetch("https://wordchain-server.vercel.app/api/generateAIReply", {
       method: "POST",
           headers: {
             "Content-Type": "application/json",

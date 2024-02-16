@@ -20,10 +20,10 @@ app.post('/api/testPlayerAnswer', async (req, res) => {
     const possibleWords = req.body.possibleWords;
     const APIBody = {
         model: "gpt-3.5-turbo-instruct",
-        prompt: `Given the following list of words: ${possibleWords.toString()}, identify the word that you are 100% sure is correctly spelt and definitely in the Oxford English dictionary and surround it in '*'s. Provide a brief definition or a sentence using the word to demonstrate that it is obviously a word from the Oxford English Dictionary.`,
+        prompt: `Given the following list of words: ${possibleWords.toString()}, identify the word that you are 100% sure is correctly spelt and definitely in the Oxford English dictionary and surround it in '*'s. Provide a brief definition or a sentence using the word to demonstrate that it is a legitimate word from the Oxford English Dictionary.`,
         temperature: 0,
         max_tokens: 500,
-        top_p: 0,
+        top_p: 0.1,
         frequency_penalty: 0.0,
         presence_penalty: 0.0
     };

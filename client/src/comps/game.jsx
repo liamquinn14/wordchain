@@ -162,9 +162,9 @@ React.useEffect(() => {
         console.log(`${res} is an invalid word`)
         let newRandomPrompt = promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase()
         setPromptWord(newRandomPrompt)
-        setUsedWords(prevUsedWords => [...prevUsedWords, "AI DEFEATED! + 25 POINTS"])
+        setUsedWords(prevUsedWords => [...prevUsedWords, "AI DEFEATED! + 10 POINTS"])
         setUsedWords(prevUsedWords => [...prevUsedWords, newRandomPrompt])
-        setPlayerScore(prevPlayerScore => prevPlayerScore + 25)
+        setPlayerScore(prevPlayerScore => prevPlayerScore + 10)
       }
       setLoadingResponse(false)
     })

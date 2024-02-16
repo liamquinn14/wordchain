@@ -15,13 +15,9 @@ function Game() {
     const [confirmedPlayerAnswer, setConfirmedPlayerAnswer] = React.useState("")
     const [validPlayerAnswer, setValidPlayerAnswer] = React.useState("")
     const [aiPromptList, setAiPromptList] = React.useState("")
-    const [usedWords, setUsedWords] = React.useState([])
-    const [round, setRound] = React.useState(0)
     const [possibleWords, setPossibleWords] = React.useState([])
     const [loadingResponse, setLoadingResponse] = React.useState(false)
-    const [timeLeft, setTimeLeft] = React.useState(60)
-
-    const {setGameState, playerScore, setPlayerScore, defeatReason, setDefeatReason} = React.useContext(GameContext)
+    const {setGameState, playerScore, setPlayerScore, defeatReason, setDefeatReason, timeLeft, setTimeLeft, usedWords, setUsedWords, round, setRound} = React.useContext(GameContext)
 
     React.useEffect(() => {
         let newWord = promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase()

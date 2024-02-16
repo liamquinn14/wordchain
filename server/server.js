@@ -5,7 +5,6 @@ import cors from 'cors';
 dotenv.config();
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const PORT = process.env.PORT
 
 const app = express();
 app.use(express.json()); 
@@ -110,6 +109,6 @@ app.post('/api/generateAIReply', async (req, res) => {
      }
 })
 
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+app.listen(8080, () => {
+    console.log(`Server started on port 8080`);
 });

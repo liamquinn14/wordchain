@@ -194,7 +194,7 @@ React.useEffect(() => {
         : <div className="text-gray-100 text-5xl tracking-wide">
          <span className='text-gray-100 text-5xl tracking-wide'>{promptWord.slice(0, promptWord.length - 2)}</span><span className='text-yellow-200 text-5xl tracking-wide'>{promptWord.slice(promptWord.length - 2)}</span>
           </div> }
-        {!loadingResponse && <input type="text" autocapitalize="none" autocomplete="off" autocorrect="off" className="text-5xl bg-gray-900 text-yellow-200 w-min min-w-1 max-w-64 outline-none tracking-wide" ref={inputRef} onChange={handleAnswerChange} onKeyPress={handleKeyPress} value={answer}/> }
+        {!loadingResponse && <input type="text" autoCapitalize="none" autoComplete="off" autoCorrect="off" className="text-5xl bg-gray-900 text-yellow-200 w-min min-w-1 max-w-64 outline-none tracking-wide" ref={inputRef} onChange={handleAnswerChange} onKeyPress={handleKeyPress} value={answer}/> }
         <div className="text-gray-800 bg-yellow-200 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none">ME</div>
     </div>
     </>

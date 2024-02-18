@@ -45,11 +45,11 @@ function Results() {
       <span className="m-1 text-yellow-200">again</span>
     </div>
     {recordBeat && (
-        <h2 className="p-2 m-2 text-xl font-bolder text-green-300">
+        <h2 className="p-2 m-2 text-xl font-bolder text-green-300 tracking-wide">
           THAT'S A NEW HIGH SCORE!
         </h2>
       )}
-      <h2 className="p-2 w-1/6 mx-auto text-center font-medium text-gray-100 text-2xl md:w-1/3 md:m-4 rounded-xl">
+      <h2 className="p-2 w-1/6 mx-auto text-center font-medium text-gray-100 text-2xl md:w-1/3 md:m-4 rounded-xl tracking-wide">
             Your High Score: {record}
       </h2>
       { record >= 80 && <img src={medalUrl} className='w-20 m-4'/>}

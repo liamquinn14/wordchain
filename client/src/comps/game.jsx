@@ -17,7 +17,7 @@ function Game() {
     const [aiPromptList, setAiPromptList] = React.useState("")
     const [possibleWords, setPossibleWords] = React.useState([])
     const [loadingResponse, setLoadingResponse] = React.useState(false)
-    const {setGameState, gameState, playerScore, setPlayerScore, defeatReason, setDefeatReason, timeLeft, setTimeLeft, usedWords, setUsedWords, round, setRound} = React.useContext(GameContext)
+    const {setGameState, gameState, playerScore, setPlayerScore, defeatReason, setDefeatReason, timeLeft, setTimeLeft, usedWords, setUsedWords, round, setRound, setRecord, setRecordBeat} = React.useContext(GameContext)
 
     React.useEffect(() => {
         let newWord = promptWords[Math.floor(Math.random() * promptWords.length)].toLowerCase()
@@ -179,6 +179,18 @@ React.useEffect(() => {
   setAnswer("")
 }, [validPlayerAnswer]);
 
+function forfeit() {
+  setGameState('results')
+}
+
+React.useEffect(() => {
+  if (!localStorage.getItem('record') || Number(playerScore) > Number(localStorage.getItem('record'))) {
+              localStorage.setItem('record', playerScore.toString())
+              setRecordBeat(true)
+          }
+      setRecord(localStorage.getItem('record'))
+}, [playerScore])
+
   return (
     <>
     <div className='rounded-full bg-yellow-200 text-gray-900 p-2 text-3xl m-8'>{timeLeft}</div>
@@ -197,6 +209,7 @@ React.useEffect(() => {
         {!loadingResponse && <input type="text" autoCapitalize="none" autoComplete="off" autoCorrect="off" className="text-5xl bg-gray-900 text-yellow-200 w-min min-w-1 max-w-64 outline-none tracking-wide" ref={inputRef} onChange={handleAnswerChange} onKeyPress={handleKeyPress} value={answer}/> }
         <div className="text-gray-800 bg-yellow-200 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none">ME</div>
     </div>
+    <button className='px-4 py-2 bg-yellow-200 text-gray-900 border-2 border-red-500 rounded-lg shadow-md text-2xl font-medium m-24 hover:bg-red-500' onClick={forfeit}>Forfeit</button>
     </>
   )
 }

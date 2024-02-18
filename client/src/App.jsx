@@ -21,7 +21,7 @@ function App() {
       !localStorage.getItem("record") ||
       Number(playerScore) > Number(localStorage.getItem("record"))
     ) {
-      localStorage.setItem("record", score.toString());
+      localStorage.setItem("record", playerScore.toString());
       setRecordBeat(true);
     }
     setRecord(localStorage.getItem("record"));

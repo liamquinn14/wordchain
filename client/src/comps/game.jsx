@@ -193,9 +193,9 @@ React.useEffect(() => {
 
   return (
     <>
-    <div className='rounded-full bg-yellow-200 text-gray-900 p-2 text-3xl m-8'>{timeLeft}</div>
+    <div className='rounded-full bg-yellow-200 text-gray-900 p-2 text-3xl m-4 md:m-8'>{timeLeft}</div>
     <p className='text-2xl text-gray-100'>Your score is...</p>
-    <p className='text-3xl text-yellow-200 mt-2 mb-6'>{playerScore}</p>
+    <p className='text-3xl text-yellow-200 mt-2 mb-4 md:mb-6'>{playerScore}</p>
     <div className={`m-1 text-sm ${round % 2 === 0 ? "text-gray-200" : "text-yellow-200"}`}>{usedWords.length > 3 ? usedWords[usedWords.length - 4] : "your"}</div>
     <div className={`m-1 text-base ${round % 2 === 0 ? "text-yellow-200" : "text-gray-200"}`}>{usedWords.length > 2 ? usedWords[usedWords.length - 3] : "wordchain"}</div>
     <div className={`m-1 text-lg ${round % 2 === 0 ? "text-gray-200" : "text-yellow-200"}`}>{usedWords.length > 1 ? usedWords[usedWords.length - 2] : "goes"}</div>
@@ -209,7 +209,7 @@ React.useEffect(() => {
         {!loadingResponse && <input type="text" autoCapitalize="none" autoComplete="off" autoCorrect="off" className="text-4xl md:text-5xl bg-gray-900 text-yellow-200 w-min min-w-1 max-w-40 md:max-w-64 outline-none tracking-wide mx-0 mt-2 md:mt-4" ref={inputRef} onChange={handleAnswerChange} onKeyPress={handleKeyPress} value={answer}/> }
         <div className="text-gray-800 bg-yellow-200 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none hidden md:flex">ME</div>
     </div>
-    <button className='px-4 py-2 bg-yellow-200 text-gray-900 border-2 border-red-500 rounded-lg shadow-md text-2xl font-medium m-24 hover:bg-red-500' onClick={forfeit}>Forfeit</button>
+    <button className='px-4 py-2 bg-yellow-200 text-gray-900 border-2 border-red-500 rounded-lg shadow-md text-2xl font-medium m-24 hover:bg-red-500 hidden md:flex' onClick={forfeit}>Forfeit</button>
     </>
   )
 }

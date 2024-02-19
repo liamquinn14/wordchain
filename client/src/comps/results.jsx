@@ -31,9 +31,9 @@ function Results() {
 
   return (
     <>
-      <h4 className='text-6xl tracking-wide m-8'>❌</h4>
-      <h4 className='text-yellow-200 text-3xl tracking-wide m-4 w-1/2 flex flex-wrap text-center justify-center items-center'>{defeatReason}</h4>
-      <h1 className='text-slate-100 text-3xl tracking-wide m-4'>You survived {Math.floor(round / 2)} round{(Math.floor(round / 2) ) === 1 ? "" : "s"} and scored...</h1>
+      <h4 className='text-6xl tracking-wide m-2 md:m-8'>❌</h4>
+      <h4 className='text-yellow-200 text-3xl tracking-wide m-2 md:m-4 w-1/2 flex flex-wrap text-center justify-center items-center'>{defeatReason}</h4>
+      <h1 className='text-slate-100 text-3xl tracking-wide m-2 md:m-4'>You survived {Math.floor(round / 2)} round{(Math.floor(round / 2) ) === 1 ? "" : "s"} and scored...</h1>
       <h3 className='text-yellow-200 text-4xl tracking-wide mt-2 mb-4'> {playerScore} points</h3>
     <div 
         className="text-gray-100 text-6xl transition-all duration-300 select-none cursor-pointer m-8"
@@ -46,12 +46,10 @@ function Results() {
     </div>
     {recordBeat && (
         <h2 className="p-2 m-2 text-xl font-bolder text-green-300 tracking-wide">
-          THAT'S A NEW HIGH SCORE!
+          NEW HIGH SCORE!
         </h2>
       )}
-      <h2 className="p-2 w-1/6 mx-auto text-center font-medium text-gray-100 text-2xl md:w-1/3 md:m-4 rounded-xl tracking-wide">
-            Your High Score: {record}
-      </h2>
+      <h2 className="p-2 w-1/2 mx-auto text-center font-medium text-gray-100 text-2xl md:m-4 rounded-xl tracking-wide">High Score: {record}</h2>
       { record >= 80 && <img src={medalUrl} className='w-20 m-4'/>}
     </>
   )

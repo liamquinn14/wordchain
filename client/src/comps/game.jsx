@@ -201,13 +201,13 @@ React.useEffect(() => {
     <div className={`m-1 text-lg ${round % 2 === 0 ? "text-gray-200" : "text-yellow-200"}`}>{usedWords.length > 1 ? usedWords[usedWords.length - 2] : "goes"}</div>
     <div className={`m-1 text-xl ${round % 2 === 0 ? "text-yellow-200" : "text-gray-200"}`}>{usedWords.length > 1 ? usedWords[usedWords.length - 1] : "here"}</div>
     <div className="flex flex-row items-center justify-center text-center">
-        <div className="text-gray-800 bg-gray-100 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none">AI</div>
-        {loadingResponse ? <div className='text-gray-100 text-2xl animate-bounce tracking-wide'>the AI is thinking...</div>
-        : <div className="text-gray-100 text-5xl tracking-wide">
-         <span className='text-gray-100 text-5xl tracking-wide'>{promptWord.slice(0, promptWord.length - 2)}</span><span className='text-yellow-200 text-5xl tracking-wide'>{promptWord.slice(promptWord.length - 2)}</span>
+        <div className="text-gray-800 bg-gray-100 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none hidden md:flex">AI</div>
+        {loadingResponse ? <div className='text-gray-100 text-2xl animate-bounce tracking-wide mt-2'>the AI is thinking...</div>
+        : <div className="text-gray-100 text-4xl md:text-5xl tracking-wide mx-0 mt-2 md:mt-4">
+         <span className='text-gray-100 text-4xl md:text-5xl tracking-wide text-center'>{promptWord.slice(0, promptWord.length - 2)}</span><span className='text-yellow-200 text-4xl md:text-5xl tracking-wide text-center'>{promptWord.slice(promptWord.length - 2)}</span>
           </div> }
-        {!loadingResponse && <input type="text" autoCapitalize="none" autoComplete="off" autoCorrect="off" className="text-5xl bg-gray-900 text-yellow-200 w-min min-w-1 max-w-64 outline-none tracking-wide" ref={inputRef} onChange={handleAnswerChange} onKeyPress={handleKeyPress} value={answer}/> }
-        <div className="text-gray-800 bg-yellow-200 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none">ME</div>
+        {!loadingResponse && <input type="text" autoCapitalize="none" autoComplete="off" autoCorrect="off" className="text-4xl md:text-5xl bg-gray-900 text-yellow-200 w-min min-w-1 max-w-40 md:max-w-64 outline-none tracking-wide mx-0 mt-2 md:mt-4" ref={inputRef} onChange={handleAnswerChange} onKeyPress={handleKeyPress} value={answer}/> }
+        <div className="text-gray-800 bg-yellow-200 text-3xl m-8 tracking-wider rounded-full p-4 font-bold select-none hidden md:flex">ME</div>
     </div>
     <button className='px-4 py-2 bg-yellow-200 text-gray-900 border-2 border-red-500 rounded-lg shadow-md text-2xl font-medium m-24 hover:bg-red-500' onClick={forfeit}>Forfeit</button>
     </>

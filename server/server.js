@@ -80,7 +80,7 @@ app.post('/api/generateAIReply', async (req, res) => {
             messages: [
                 { 
                     role: "system", 
-                    content: "The user will give you a list of potential word beginnings. Your task is to choose one of the word beginnings and generate a word that is at least 5 letters long, that begins with the exact beginning that you have chosen. Validate the existence of your generated word by providing a brief definition. If you are certain that you have generated a valid word from the Oxford English Dictionary that begins with any of the 3 word-starters, end your prompt with your best word surrounded in asterisks."
+                    content: "The user will give you a list of potential word beginnings. For every word beginning, generate a word that is at least 5 letters long, that starts with the exact word beginning. Validate the existence of each generated word by providing a brief definition. If you are certain that you have generated a valid word from the Oxford English Dictionary that begins with any of the 3 word-starters, end your prompt with the word you are most sure is a valid word, surrounded in asterisks. ----- For example, if the user were to send you 'mash, ash, sh'. A perfect reply would be: 'mashed: crushed into a soft, smooth consistency, often used for food like potatoes. ashamed: feeling guilt or embarrassment over one's actions or failures. showreel: a video compilation showcasing a person's work, used as a portfolio in creative industries.*ashamed*"
                 },
                 { 
                     role: "user", 

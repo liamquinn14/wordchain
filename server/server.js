@@ -79,7 +79,7 @@ app.post('/api/generateAIReply', async (req, res) => {
             messages: [
                 { 
                     role: "system", 
-                    content: "Follow the user's exact orders, step by step. A perfect reply structure would be: 'mashed: crushed into a soft, smooth consistency, often used for food like potatoes. ashamed: feeling guilt or embarrassment over one's actions or failures. showreel: a video compilation showcasing a person's work, used as a portfolio in creative industries.*ashamed*'"
+                    content: "Follow the user's exact orders, step by step."
                 },
                 { 
                     role: "user", 

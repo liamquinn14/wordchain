@@ -24,6 +24,7 @@ app.use(cors({
 app.options('*', cors());
 
 app.post('/api/testPlayerAnswer', async (req, res) => {
+    console.log(req.body.possibleWords)
     try {
         const response = await openai.createChatCompletion({
             model: "gpt-4-turbo-preview",

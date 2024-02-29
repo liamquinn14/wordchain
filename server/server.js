@@ -39,9 +39,7 @@ app.post('/api/testPlayerAnswer', async (req, res) => {
             ],
             temperature: 0,
         });
-        const confirmedWord = response
-        console.log(response)
-        //.split("*")[1]?.toLowerCase().replace(/'/gm, '');
+        const confirmedWord = response.choices[0].message.content.split("*")[1]?.toLowerCase()
         res.json({confirmedWord: confirmedWord});
         console.log("test complete");
     } catch (error) {

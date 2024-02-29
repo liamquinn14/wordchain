@@ -75,6 +75,7 @@ app.post('/api/validatePlayerAnswer', async (req, res) => {
 
 app.post('/api/generateAIReply', async (req, res) => {
     const aiPromptList = req.body.aiPromptList
+    console.log(aiPromptList)
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-4-turbo-preview",

@@ -1,6 +1,7 @@
 function checkAiWord(aiPromptList, aiWord, usedWords) {
     console.log(usedWords)
     console.log(usedWords.indexOf(aiWord))
+    console.log(aiPromptList)
     if (aiWord === undefined) {
       return false
     } else if (usedWords.indexOf(aiWord) >= 0) {

@@ -84,7 +84,7 @@ app.post('/api/generateAIReply', async (req, res) => {
                 },
                 { 
                     role: "user", 
-                    content: `1. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[0]}. Provide a brief definition. 2. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[1]}. Provide a brief definition. 3. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[2]}. Provide a brief definition. 4. Assess the 3 words that you have generated. Finish your prompt with the word you are most sure is a legitimate word that is at least 5 letters long and undeniably found in the Oxford English Dictionary, and surround it with asterisks.`
+                    content: `1. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[0]}. Provide a brief definition. 2. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[1]}. Provide a brief definition. 3. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[2]}. Provide a brief definition. 4. Assess the 3 words that you have generated. Decide which of these words you are most sure is a legitimate word that is at least 5 letters long and undeniably found in the Oxford English Dictionary. 5. Finish your prompt with your chosen legitimate word surrounded by asterisks.`
                 }
             ],
             temperature: 0.7,

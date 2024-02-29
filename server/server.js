@@ -90,7 +90,7 @@ app.post('/api/generateAIReply', async (req, res) => {
             temperature: 0.7,
             top_p: 0.5
         });
-        const aiReply = response.choices[0].message.content.trim().split("*")[1]
+        const aiReply = response.choices[0].message.content.trim().split("*")[1].toLowerCase()
         res.json({aiReply: aiReply})
         } catch (error) {
         console.error(error);

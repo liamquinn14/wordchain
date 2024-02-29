@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import OpenAI from "openai";
 dotenv.config();
-
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
@@ -26,7 +25,7 @@ app.options('*', cors());
 app.post('/api/testPlayerAnswer', async (req, res) => {
     console.log(req.body.possibleWords)
     try {
-        const response = await openai.createChatCompletion({
+        const response = await openai.chat.completions.create({
             model: "gpt-4-turbo-preview",
             messages: [
                 { 

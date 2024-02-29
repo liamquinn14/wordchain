@@ -2,7 +2,12 @@ import express from 'express';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import OpenAI from "openai";
 dotenv.config();
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const PORT = process.env.PORT
@@ -19,35 +24,30 @@ app.use(cors({
 app.options('*', cors());
 
 app.post('/api/testPlayerAnswer', async (req, res) => {
-    const possibleWords = req.body.possibleWords;
-    const APIBody = {
-        model: "gpt-3.5-turbo-instruct",
-        prompt: `Given the following list of words: ${possibleWords.toString()}, identify the word that you are 100% sure is correctly spelt and definitely in the Oxford English dictionary and surround it in '*'s. Provide a brief definition or a sentence using the word to demonstrate that it is a legitimate word from the Oxford English Dictionary.`,
-        temperature: 0,
-        max_tokens: 500,
-        top_p: 0.1,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0
-    };
-
     try {
-        const response = await fetch("https://api.openai.com/v1/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + OPENAI_API_KEY
-            },
-            body: JSON.stringify(APIBody)
+        const response = await openai.createChatCompletion({
+            model: "gpt-4-turbo-preview",
+            messages: [
+                { 
+                    role: "system", 
+                    content: "The user will give you a list of potential words, separated by commas. Your task is to identify the word that you are 100% sure is correctly spelled and definitely in the Oxford English dictionary and surround it in '*'s. Provide a brief definition or a sentence using the word to demonstrate that it is a legitimate word from the Oxford English Dictionary." 
+                },
+                { 
+                    role: "user", 
+                    content: req.body.possibleWords
+                }
+            ],
+            temperature: 0,
         });
-        const data = await response.json();
-        const confirmedWord = data.choices[0].text.trim().split("*")[1].toLowerCase().replace(/'/gm, '');
+        const confirmedWord = response.data.choices[0].message.content.trim().split("*")[1]?.toLowerCase().replace(/'/gm, '');
         res.json({confirmedWord: confirmedWord});
-        console.log("test complete")
+        console.log("test complete");
     } catch (error) {
         console.error(error);
         res.status(500).send('Error processing your request');
     }
 });
+
 
 app.post('/api/validatePlayerAnswer', async (req, res) => {
     const confirmedPlayerAnswer = req.body.confirmedPlayerAnswer

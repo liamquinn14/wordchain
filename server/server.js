@@ -80,11 +80,11 @@ app.post('/api/generateAIReply', async (req, res) => {
             messages: [
                 { 
                     role: "system", 
-                    content: "The user will give you a list of potential word beginnings. For every word beginning, generate a word that is at least 5 letters long, that starts with the exact word beginning. Validate the existence of each generated word by providing a brief definition. If you are certain that you have generated a valid word from the Oxford English Dictionary that begins with any of the 3 word-starters, end your prompt with the word you are most sure is a valid word, surrounded in asterisks. ----- For example, if the user were to send you 'mash, ash, sh'. A perfect reply would be: 'mashed: crushed into a soft, smooth consistency, often used for food like potatoes. ashamed: feeling guilt or embarrassment over one's actions or failures. showreel: a video compilation showcasing a person's work, used as a portfolio in creative industries.*ashamed*"
+                    content: "Follow the user's exact orders, step by step. A perfect reply structure would be: 'mashed: crushed into a soft, smooth consistency, often used for food like potatoes. ashamed: feeling guilt or embarrassment over one's actions or failures. showreel: a video compilation showcasing a person's work, used as a portfolio in creative industries.*ashamed*'"
                 },
                 { 
                     role: "user", 
-                    content: req.body.aiPromptList
+                    content: `1. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[0]}. Provide a brief definition. 2. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[1]}. Provide a brief definition. 3. Generate me a 5+ letter word that starts with ${req.body.aiPromptList.split(",")[2]}. Provide a brief definition. 4. Assess the 3 words that you have generated. Decide which of these words you are most sure is a legitimate word that is undeniably found in the Oxford English Dictionary. 5. Finish your prompt with your chosen legitimate word surrounded by asterisks.`
                 }
             ],
             temperature: 0.7,

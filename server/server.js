@@ -23,7 +23,6 @@ app.use(cors({
 app.options('*', cors());
 
 app.post('/api/testPlayerAnswer', async (req, res) => {
-    console.log(req.body.possibleWords)
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-4-turbo-preview",
@@ -50,28 +49,22 @@ app.post('/api/testPlayerAnswer', async (req, res) => {
 
 
 app.post('/api/validatePlayerAnswer', async (req, res) => {
-    const confirmedPlayerAnswer = req.body.confirmedPlayerAnswer
-    const APIBody = {
-        model: "gpt-3.5-turbo-instruct",
-        prompt: `If '${confirmedPlayerAnswer}' is a word spelled correctly and definitely in the Oxford English dictionary, reply with 'yes', if '${confirmedPlayerAnswer}' is not a word in the Oxford English dictionary, or has been spelled incorrectly, reply with 'no'.`,
-        temperature: 0,
-        max_tokens: 500,
-        top_p: 0,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0
-    };
-
     try {
-        const response = await fetch("https://api.openai.com/v1/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + OPENAI_API_KEY
-            },
-            body: JSON.stringify(APIBody)
+        const response = await openai.chat.completions.create({
+            model: "gpt-4-turbo-preview",
+            messages: [
+                { 
+                    role: "system", 
+                    content: "The user will give you a word. If it is definitely a legitimate word from the Oxford English Dictionary, reply with 'yes', otherwise reply with 'no'." 
+                },
+                { 
+                    role: "user", 
+                    content: req.body.confirmedPlayerAnswer
+                }
+            ],
+            temperature: 0,
         });
-        const data = await response.json();
-        const isWordValid = data.choices[0].text.trim().toLowerCase()
+        const isWordValid = response.choices[0].message.content.trim().toLowerCase()
         res.json({isWordValid: isWordValid})
         console.log("validation complete")
     } catch (error) {

@@ -86,7 +86,7 @@ function Game() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({possibleWords: possibleWords.toString()})
+          body: JSON.stringify({possibleWords: possibleWords})
         })
         .then((data) => data.json())
         .then((data) => {

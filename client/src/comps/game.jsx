@@ -152,6 +152,7 @@ React.useEffect(() => {
           body: JSON.stringify({aiPrompt: aiPrompt.toString()})
     })
     .then((data) => {
+      console.log(data)
       return data.json();
       }).then((data) => {
       let res = data.aiReply

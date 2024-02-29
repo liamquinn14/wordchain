@@ -149,7 +149,7 @@ React.useEffect(() => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({aiPrompt: aiPrompt})
+          body: JSON.stringify({aiPrompt: aiPrompt.toString()})
     })
     .then((data) => {
       return data.json();
@@ -175,7 +175,7 @@ React.useEffect(() => {
       console.error('Error:', error);
     });
   }
-  generateAIReply(aiPromptList.toString());
+  generateAIReply(aiPromptList);
   setAnswer("")
 }, [validPlayerAnswer]);
 

@@ -75,7 +75,9 @@ app.post('/api/validatePlayerAnswer', async (req, res) => {
 
 app.post('/api/generateAIReply', async (req, res) => {
     const aiPromptList = req.body.aiPrompt
-    console.log(aiPromptList)
+    const firstBeginning = aiPromptList.split(",")[0]
+    const secondBeginning = aiPromptList.split(",")[1]
+    const thirdBeginning = aiPromptList.split(",")[2]
     try {
         const response = await openai.chat.completions.create({
             model: "gpt-4-turbo-preview",
@@ -86,7 +88,7 @@ app.post('/api/generateAIReply', async (req, res) => {
                 },
                 { 
                     role: "user", 
-                    content: `1. Generate me a 5+ letter word that starts with the letters '${aiPromptList.split(",")[0]}' in that exact order. Provide a brief definition. 2. Generate me a 5+ letter word that starts with the letters '${aiPromptList.split(",")[1]}' in that exact order. Provide a brief definition. 3. Generate me a 5+ letter word that starts with the letters '${aiPromptList.split(",")[2]}' in that exact order. Provide a brief definition. 4. Assess the 3 words that you have generated. Decide which of these words you are most sure is a legitimate word that is at least 5 letters long and undeniably found in the Oxford English Dictionary. 5. Finish your prompt with your chosen legitimate word surrounded by three asterisks on each side.`
+                    content: `1. Generate me a 5+ letter word that starts with the letters '${firstBeginning}' in that exact order. Provide a brief definition. 2. Generate me a 5+ letter word that starts with the letters '${secondBeginning}' in that exact order. Provide a brief definition. 3. Generate me a 5+ letter word that starts with the letters '${thirdBeginning}' in that exact order. Provide a brief definition. 4. Assess the 3 words that you have generated. Decide which of these words you are most sure is a legitimate word that is at least 5 letters long and undeniably found in the Oxford English Dictionary. 5. Finish your prompt with your chosen legitimate word surrounded by three asterisks on each side.`
                 }
             ],
             temperature: 0.7,

@@ -75,7 +75,7 @@ app.post('/api/validatePlayerAnswer', async (req, res) => {
 
 app.post('/api/generateAIReply', async (req, res) => {
     const aiPromptList = req.body.aiPromptList
-    console.log(aiPromptList[0], aiPromptList[1])
+    console.log(aiPromptList)
     const APIBody = {
         model: "gpt-3.5-turbo-instruct",
         prompt: `Your task is to generate a word that is at least 5 letters long, that begins with '${aiPromptList[1]}' and validate its existence by providing a brief definition. Then,generate a word that begins with '${aiPromptList[0]}', that is at least 5 letters long, and provide a brief definition. If you are certain that you have generated a valid word from the Oxford English Dictionary that begins with either of the 2 word-starters, end your prompt with your best word surrounded in asterisks.

@@ -8,7 +8,6 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const PORT = process.env.PORT
 
 const app = express();
@@ -25,7 +24,7 @@ app.options('*', cors());
 app.post('/api/testPlayerAnswer', async (req, res) => {
     try {
         const response = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-3.5-turbo",
             messages: [
                 { 
                     role: "system", 
@@ -51,7 +50,7 @@ app.post('/api/testPlayerAnswer', async (req, res) => {
 app.post('/api/validatePlayerAnswer', async (req, res) => {
     try {
         const response = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-3.5-turbo",
             messages: [
                 { 
                     role: "system", 
@@ -76,7 +75,7 @@ app.post('/api/validatePlayerAnswer', async (req, res) => {
 app.post('/api/generateAIReply', async (req, res) => {
     try {
         const response = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-3.5-turbo",
             messages: [
                 { 
                     role: "system", 

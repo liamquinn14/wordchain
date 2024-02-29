@@ -4,9 +4,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import OpenAI from "openai";
 dotenv.config();
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
 
 const PORT = process.env.PORT
 
@@ -20,6 +17,10 @@ app.use(cors({
   }));
  
 app.options('*', cors());
+
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+});
 
 app.post('/api/testPlayerAnswer', async (req, res) => {
     try {

@@ -149,7 +149,7 @@ React.useEffect(() => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({aiPromptList: aiPromptList})
+          body: JSON.stringify({aiPromptList: aiPromptList.toString()})
     })
     .then((data) => {
       return data.json();

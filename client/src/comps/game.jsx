@@ -143,13 +143,13 @@ React.useEffect(() => {
   if (!validPlayerAnswer) {
     return;
   }
-  async function generateAIReply(aiPromptList) {
+  async function generateAIReply(aiPrompt) {
     await fetch("https://wordchain-server.vercel.app/api/generateAIReply", {
       method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({aiPromptList: aiPromptList})
+          body: JSON.stringify({aiPrompt: aiPrompt})
     })
     .then((data) => {
       return data.json();
@@ -157,7 +157,7 @@ React.useEffect(() => {
       let res = data.aiReply
       res !== undefined && res.trim()
       console.log(usedWords.indexOf(res))
-      let aiSuccess = checkAiWord(aiPromptList, res, usedWords)
+      let aiSuccess = checkAiWord(aiPrompt, res, usedWords)
       if (aiSuccess && res.length > 4) {
         setPromptWord(res);
         setUsedWords(prevUsedWords => [...prevUsedWords, res])
@@ -175,7 +175,7 @@ React.useEffect(() => {
       console.error('Error:', error);
     });
   }
-  generateAIReply(aiPromptList);
+  generateAIReply(aiPromptList.toString());
   setAnswer("")
 }, [validPlayerAnswer]);
 

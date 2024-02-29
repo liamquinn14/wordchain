@@ -74,35 +74,24 @@ app.post('/api/validatePlayerAnswer', async (req, res) => {
 })
 
 app.post('/api/generateAIReply', async (req, res) => {
-    const aiPromptList = req.body.aiPromptList
-    console.log(aiPromptList)
-    const APIBody = {
-        model: "gpt-3.5-turbo-instruct",
-        prompt: `Your task is to generate a word that is at least 5 letters long, that begins with '${aiPromptList[1]}' and validate its existence by providing a brief definition. Then,generate a word that begins with '${aiPromptList[0]}', that is at least 5 letters long, and provide a brief definition. If you are certain that you have generated a valid word from the Oxford English Dictionary that begins with either of the 2 word-starters, end your prompt with your best word surrounded in asterisks.
-        ---
-        A perfect reply structure for you to adhere to would be:
-        aluminium - a light metal used to make cans. calcium - a mineral used to strengthen bones.
-        *aluminium*
-        `,
-        temperature: 0.2,
-        max_tokens: 500,
-        top_p: 0.5,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0
-      };
-      try {
-        const response = await fetch("https://api.openai.com/v1/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + OPENAI_API_KEY
-            },
-            body: JSON.stringify(APIBody)
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-4-turbo-preview",
+            messages: [
+                { 
+                    role: "system", 
+                    content: "The user will give you a list of potential word beginnings. Your task is to choose one of the word beginnings and generate a word that is at least 5 letters long, that begins with the exact beginning that you have chosen. Validate the existence of your generated word by providing a brief definition. If you are certain that you have generated a valid word from the Oxford English Dictionary that begins with any of the 3 word-starters, end your prompt with your best word surrounded in asterisks."
+                },
+                { 
+                    role: "user", 
+                    content: req.body.aiPromptList
+                }
+            ],
+            temperature: 0.7,
+            top_p: 0.5
         });
-        const data = await response.json();
-        const aiReply = data.choices[0].text.trim().split("*")[1]
+        const aiReply = response.choices[0].message.content.trim().split("*")[1]
         res.json({aiReply: aiReply})
-        console.log("ai reply complete")
         } catch (error) {
         console.error(error);
         res.status(500).send('Error processing your request');

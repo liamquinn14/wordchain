@@ -175,7 +175,7 @@ React.useEffect(() => {
       console.error('Error:', error);
     });
   }
-  generateAIReply(aiPromptList);
+  generateAIReply(aiPromptList.toString());
   setAnswer("")
 }, [validPlayerAnswer]);
 

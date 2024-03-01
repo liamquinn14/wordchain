@@ -26,12 +26,6 @@ function Game() {
     }, [])
 
     React.useEffect(() => {
-      if(inputRef.current) {
-        inputRef.current.focus();
-    }
-    }, [round])
-
-    React.useEffect(() => {
       if (loadingResponse) {
         return
       }
@@ -46,12 +40,12 @@ function Game() {
       }
   }, [timeLeft, loadingResponse]);
 
-    React.useEffect(() => {
-      if(inputRef.current) {
-        inputRef.current.focus();
+  React.useEffect(() => {
+    if (inputRef.current && !loadingResponse && round > 0) {
+      inputRef.current.focus();
     }
-    }, [loadingResponse])
-
+  }, [round, loadingResponse, promptWord]);
+  
     function handleAnswerChange(event) {
       setAnswer(event.target.value);
     }

@@ -165,6 +165,8 @@ React.useEffect(() => {
         validPlayerAnswer !== "X" && setPlayerScore(prevPlayerScore => prevPlayerScore + 10)
       }
       setLoadingResponse(false)
+      inputRef.current.focus();
+
     })
     .catch((error) => {
       console.error('Error:', error);

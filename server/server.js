@@ -29,7 +29,7 @@ app.post('/api/testPlayerAnswer', async (req, res) => {
             messages: [
                 { 
                     role: "system", 
-                    content: "The user will give you a list of potential words, separated by commas. Your task is to identify the word that you are 100% sure is correctly spelled and definitely in the Oxford English dictionary and surround it in '*'s. Provide a brief definition or a sentence using the word to demonstrate that it is a legitimate word from the Oxford English Dictionary." 
+                    content: "The user will give you a list of potential words, separated by commas. Your task is to identify the word that you are 100% sure is correctly spelled and definitely in the Oxford English dictionary and surround it with one asterisk on each side. Provide a brief definition or a sentence using the word to demonstrate that it is a legitimate word from the Oxford English Dictionary." 
                 },
                 { 
                     role: "user", 

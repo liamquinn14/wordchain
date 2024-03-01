@@ -41,12 +41,14 @@ function Game() {
   }, [timeLeft, loadingResponse]);
 
   React.useEffect(() => {
-    if (inputRef.current && !loadingResponse && round > 0) {
-      inputRef.current.focus();
-      inputRef.current.scrollIntoView({behavior: "smooth"
-    })
-  }
+    requestAnimationFrame(() => {
+      if (inputRef.current && !loadingResponse && round > 0) {
+        inputRef.current.focus();
+        inputRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    });
   }, [round, loadingResponse, promptWord]);
+  
   
     function handleAnswerChange(event) {
       setAnswer(event.target.value);

@@ -41,12 +41,16 @@ function Game() {
   }, [timeLeft, loadingResponse]);
 
   React.useEffect(() => {
-    if (inputRef.current && !loadingResponse && round > 0) {
-      inputRef.current.focus();
-      inputRef.current.scrollIntoView({behavior: "smooth"
-    })
-  }
+    const timer = setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }, 50);
+  
+    return () => clearTimeout(timer);
   }, [round, loadingResponse, promptWord]);
+  
   
     function handleAnswerChange(event) {
       setAnswer(event.target.value);

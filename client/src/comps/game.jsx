@@ -43,7 +43,9 @@ function Game() {
   React.useEffect(() => {
     if (inputRef.current && !loadingResponse && round > 0) {
       inputRef.current.focus();
-    }
+      inputRef.current.scrollIntoView({behavior: "smooth"
+    })
+  }
   }, [round, loadingResponse, promptWord]);
   
     function handleAnswerChange(event) {
@@ -166,7 +168,8 @@ React.useEffect(() => {
       }
       setLoadingResponse(false)
       inputRef.current.focus();
-
+      inputRef.current.scrollIntoView({behavior: "smooth"
+    })
     })
     .catch((error) => {
       console.error('Error:', error);

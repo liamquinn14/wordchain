@@ -52,7 +52,7 @@ app.post('/api/testPlayerAnswer', async (req, res) => {
 app.post('/api/validatePlayerAnswer', async (req, res) => {
     try {
         const response = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-3.5-turbo",
             messages: [
                 { 
                     role: "system", 
@@ -81,7 +81,7 @@ app.post('/api/generateAIReply', async (req, res) => {
     const thirdBeginning = aiPromptList.split(",")[2]
     try {
         const response = await openai.chat.completions.create({
-            model: "gpt-4-turbo-preview",
+            model: "gpt-3.5-turbo",
             messages: [
                 { 
                     role: "system", 

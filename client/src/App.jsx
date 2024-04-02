@@ -28,7 +28,7 @@ function App() {
   }, [playerScore]);
 
   return (
-    <div className="bg-gray-900 flex flex-col justify-center items-center text-center w-screen h-screen overflow-hidden">
+    <div className="bg-gray-900 flex flex-col justify-center items-center text-center w-screen h-dvh overflow-hidden">
     <GameContext.Provider value={{gameState, setGameState, playerScore, setPlayerScore, defeatReason, setDefeatReason, timeLeft, setTimeLeft, usedWords, setUsedWords, round, setRound, record, setRecord, recordBeat, setRecordBeat}}>
     {gameState === 'splash' && <Splash />}
     {gameState === 'game' && <Game />}
